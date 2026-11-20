@@ -18,7 +18,9 @@ export async function runShot(shot, query, api) {
   // Nudge the hero photo toward its top, so a face near the top of a square photo still shows
   // in the wide hero panel; the renderer's clamp keeps it safe at every size.
   api.setPanel(0, hero, 0, 0.6);
-  api.setPanel(1, alt);
+  // The top-right panel is short, so the alt photo's subject (a face near the top of the
+  // square sample) is cut off without a nudge down; the renderer's clamp keeps it safe.
+  api.setPanel(1, alt, 0, 0.25);
   api.setPanel(2, alt);
   api.setPanel(3, hero);
   api.setCaption(caption);
